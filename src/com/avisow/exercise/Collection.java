@@ -159,3 +159,108 @@ In the second case, you can walk to index 1 or 2 and jump from there. In the thi
         System.out.println(h);
     }
 }
+
+/*
+* // Given an array of numbers print me the most frequently occurring number
+// Eg. arr={1,2,3,4,3,4,1,3,4,3}
+
+void FindFreqNumber(int array[]){
+HashMap<Integer, Integer> freq = new HashMap<>();
+int count = 0;
+
+for (int i=0; i<array.length(); i++) {
+    if (freq.containsKey(array[i])) {
+        int count = freq.get(array[i]);
+        freq.put(array[i], count++);
+
+    } else {
+        freq.put(array[i], 1);
+    }
+}
+
+Map.Entry<Integer, Integer> member = null;
+for (Map.Entry<Integer, Integer> entry : freq.entrySet()) {
+    int key = entry.getKey();
+    int value = entry.getValue();
+
+    if (value > count) {
+        count = value;
+        member = entry;
+    }
+}
+
+System.out.println("The most frequently occuring number is '" + member.getKey() "' with the frequency=" + member.getValue());
+
+}
+
+// Given you have APIs for queue (enqueue and dequeue), you have to implement stack operations using only these APIs
+// push 2 3 4
+// pop -> 4 (2 3)
+// push 5 -> (5 2 3)
+// pop -> 5 (2 3)
+
+
+// enqueue(2)
+// enqueue(3)
+// enqueue(4)
+// dequeue() -> 2
+// dequeue() -> 3
+// dequeue() -> 4
+// dequeue() -> -1
+// n=4
+
+
+
+queue.enqueue(n); // last in
+queue.dequeue(); // first in out
+int size=0;
+
+void Push(int n){
+queue1.enqueue(n);
+size++;
+}
+
+int Pop(){
+queue2 = new Queue<Integer>();
+int n = -1;
+if (size == 0) {
+    return -1;
+}
+
+for (int i=0; i<size-1; i++) {
+    n = queue1.dequeue;
+    queue2.enqueue(n);
+}
+
+queue1 = queue2;
+size--;
+
+return n;
+}
+
+//
+
+public class Node {
+ private Node next;
+ private Objcet value;
+
+ public void setNext(Node node) {
+     next = node;
+ }
+
+ public Node getNext() {
+     return next;
+ }
+}
+
+public class LinkedList {
+
+}
+
+//
+
+
+
+
+
+* */

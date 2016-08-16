@@ -2,6 +2,8 @@ package com.avisow.exercise;
 
 import java.io.IOException;
 import java.security.Permission;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -9,6 +11,14 @@ public class Main {
     private static int B;
     private static int H;
     private static boolean flag = true;
+
+    private static int[][] land = new int[][]{
+            { 0, 1, 0, 0, 1 },
+            { 0, 0, 1, 1, 0 },
+            { 0, 0, 1, 1, 0 },
+            { 0, 1, 0, 0, 1 },
+            { 1, 1, 1, 1, 1 }
+    };
 
 //    static {
 //        Scanner input = new Scanner(System.in);
@@ -34,7 +44,7 @@ public class Main {
 //            System.out.println(area);
 //        }
 
-        Do_Not_Terminate.forbidExit();
+        /*Do_Not_Terminate.forbidExit();
         try {
             Scanner in = new Scanner(System.in);
             int n = in.nextInt();
@@ -49,10 +59,83 @@ public class Main {
         }
         catch (Do_Not_Terminate.ExitTrappedExeption e) {
             System.out.println("Unsuccessful Termination!!");
+        }*/
+
+//        uniqueLandMasses();
+        List<MeetingTimes> list = new ArrayList<MeetingTimes>();
+        list.add(new MeetingTimes(8, 12));
+        list.add(new MeetingTimes(10, 14));
+        list.add(new MeetingTimes(12, 14));
+        list.add(new MeetingTimes(9, 12));
+
+        MostPopularTimePeriod p = new MostPopularTimePeriod();
+        List<Integer> ret = p.getMostTimeAppearedIntegersInMeetingTimess(list);
+        System.out.println(ret.get(0));
+        System.out.println(ret.get(1));
+    }
+
+    private static void uniqueLandMasses() {
+
+
+        int[][] found = new int[5][];
+        int count = 0;
+
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (land[i][j] == 1) {
+                    findNextMasses(i, j);
+                    count++;
+                }
+            }
         }
 
+        System.out.println("Number of land masses = "  + count);
+    }
+
+    private static void findNextMasses(int i, int j) {
+        // look upper
+        int row = i - 1;
+        int column = j;
+        if (row > 0 && row < 5) {
+            if (land[row][column] == 1) {
+                land[row][column] = 2;
+                findNextMasses(row, column);
+            }
+        }
+
+        // look on the left
+        row = i;
+        column = j - 1;
+        if (column > 0 && column < 5) {
+            if (land[row][column] == 1) {
+                land[row][column] = 2;
+                findNextMasses(row, column);
+            }
+        }
+
+        // look on the right
+        row = i;
+        column = j + 1;
+        if (column > 0 && column < 5) {
+            if (land[row][column] == 1) {
+                land[row][column] = 2;
+                findNextMasses(row, column);
+            }
+        }
+
+        // look down
+        row = i+1;
+        column = j;
+        if (row > 0 && row < 5) {
+            if (land[row][column] == 1) {
+                land[row][column] = 2;
+                findNextMasses(row, column);
+            }
+        }
 
     }
+
+
 
     private static void scannerRead() {
         Scanner sc = new Scanner(System.in);
